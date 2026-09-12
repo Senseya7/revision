@@ -525,10 +525,10 @@ let quizState = null; // {mode, list, idx, answers, submitted, timerId, secondsL
 
 const STORAGE_KEY = "swiss-wwi-progress";
 
-// syncStatus: "checking" (au lancement) · "synced" (compte Claude, via la
-// capacité db) · "local" (repli sur cet appareil uniquement — capacité
-// indisponible ou artefact ouvert hors d'une session Claude).
-let syncStatus = "checking";
+// syncStatus: "off" (par défaut, rien démarré) · "checking" (en cours
+// d'activation) · "synced" (compte Claude, via la capacité db) · "local"
+// (capacité indisponible ou artefact ouvert hors d'une session Claude).
+let syncStatus = "off";
 let dbCap = null;
 let progressDocRef = null;
 let dbReady = false;
@@ -578,7 +578,14 @@ function scheduleRemoteSave(){
 // staying stuck in this one browser's localStorage. If the capability isn't
 // granted here (older viewer, or the page opened outside claude.ai), the
 // app keeps working exactly as before, on localStorage alone.
+// Only ever called from an explicit click (the "Activer la synchronisation"
+// button) — never automatically on load — so any first-use permission
+// prompt the capability shows happens on purpose, not silently in the
+// middle of a quiz.
 async function initRemoteProgress(){
+  if(syncStatus==="checking" || syncStatus==="synced") return;
+  syncStatus = "checking";
+  if(state.tab==="accueil") render();
   try{
     dbCap = (window.claude && typeof window.claude.use==="function") ? await window.claude.use("db") : null;
   }catch(e){ dbCap = null; }
@@ -679,9 +686,10 @@ function renderAccueil(){
     <p>16 chapitres, ${total} fiches de vocabulaire anglais-français, un banc de questions corrigées et deux frises chronologiques interactives. Commence par la révision express : elle mélange les deux sujets pour repérer tes points faibles.</p>
     <div style="color:var(--muted);font-size:12px;margin-bottom:18px;">${
       syncStatus==="synced" ? "☁️ Progression synchronisée avec ton compte Claude — elle te suit d'un appareil à l'autre."
-      : syncStatus==="local" ? "💾 Progression enregistrée sur cet appareil seulement (synchronisation indisponible ici)."
-      : "Connexion à la sauvegarde de ton compte…"
-    }</div>
+      : syncStatus==="local" ? "💾 Synchronisation indisponible ici — progression gardée sur cet appareil seulement."
+      : syncStatus==="checking" ? "Connexion à la sauvegarde de ton compte…"
+      : "💾 Progression gardée sur cet appareil (ce navigateur) seulement."
+    }${syncStatus==="off"? ` <button class="btn small" id="btnSync" style="margin-left:6px;">Synchroniser avec mon compte</button>` : ""}</div>
     <div class="btnrow">
       <button class="btn primary" id="btnExpress">Révision express — 12 questions</button>
       <button class="btn" id="btnFiches">Fiches du jour (${total})</button>
@@ -744,6 +752,8 @@ function wireAccueil(){
   document.getElementById("btnFiches").onclick = ()=> goto("entrainement", {entSub:"fiches"});
   document.getElementById("btnExam").onclick = ()=> goto("examen");
   document.getElementById("btnPieges").onclick = ()=> goto("entrainement", {entSub:"pieges"});
+  const syncBtn = document.getElementById("btnSync");
+  if(syncBtn) syncBtn.onclick = ()=> initRemoteProgress();
 }
 
 /* ============================= RENDER: COURS ============================= */
@@ -1186,7 +1196,6 @@ function render(){
 (function init(){
   loadProgress();
   render();
-  initRemoteProgress();
 })();
 
 </script>
