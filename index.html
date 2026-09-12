@@ -525,21 +525,94 @@ let quizState = null; // {mode, list, idx, answers, submitted, timerId, secondsL
 
 const STORAGE_KEY = "swiss-wwi-progress";
 
+// syncStatus: "checking" (au lancement) · "synced" (compte Claude, via la
+// capacité db) · "local" (repli sur cet appareil uniquement — capacité
+// indisponible ou artefact ouvert hors d'une session Claude).
+let syncStatus = "checking";
+let dbCap = null;
+let progressDocRef = null;
+let dbReady = false;
+let dbSaveTimer = null;
+
+function normalizeProgress(data){
+  return {
+    chapterScores: (data && typeof data.chapterScores==="object" && data.chapterScores) || {},
+    cardBox: (data && typeof data.cardBox==="object" && data.cardBox) || {},
+    questionsAsked: (data && typeof data.questionsAsked==="number") ? data.questionsAsked : 0,
+    lastExam: (data && data.lastExam) || null
+  };
+}
+
 function loadProgress(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw){ progress = JSON.parse(raw); }
+    if(raw){ progress = normalizeProgress(JSON.parse(raw)); }
   }catch(e){
     // localStorage unavailable (private browsing, restricted iframe...) — session stays in memory only
     console.warn("Progress could not be loaded, starting fresh:", e);
   }
 }
-function saveProgress(){
+function saveProgressLocal(){
   try{
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
   }catch(e){
     console.warn("Progress could not be saved for this session:", e);
   }
+}
+function saveProgress(){
+  saveProgressLocal();
+  scheduleRemoteSave();
+}
+function scheduleRemoteSave(){
+  if(!dbReady || !progressDocRef) return;
+  clearTimeout(dbSaveTimer);
+  dbSaveTimer = setTimeout(()=>{
+    progressDocRef.set(progress).catch(e=>{
+      console.warn("Progress could not be synced to your Claude account:", e);
+    });
+  }, 600);
+}
+
+// Attempts to attach this page's progress to the viewer's Claude account via
+// the `db` capability, so it survives across browsers/devices instead of
+// staying stuck in this one browser's localStorage. If the capability isn't
+// granted here (older viewer, or the page opened outside claude.ai), the
+// app keeps working exactly as before, on localStorage alone.
+async function initRemoteProgress(){
+  try{
+    dbCap = (window.claude && typeof window.claude.use==="function") ? await window.claude.use("db") : null;
+  }catch(e){ dbCap = null; }
+  if(!dbCap){
+    syncStatus = "local";
+    if(state.tab==="accueil") render();
+    return;
+  }
+  try{
+    progressDocRef = dbCap.doc("progress/main");
+    const snap = await progressDocRef.get();
+    if(snap.exists){
+      progress = normalizeProgress(snap.data());
+      saveProgressLocal(); // mirror locally too, as an offline fallback
+    } else {
+      // First time this account opens the page: seed the account-wide
+      // store from whatever was already sitting in this browser.
+      await progressDocRef.set(progress);
+    }
+    dbReady = true;
+    syncStatus = "synced";
+    progressDocRef.onSnapshot(snap=>{
+      if(!snap.exists || snap.metadata.hasPendingWrites) return; // ignore echo of our own pending write
+      progress = normalizeProgress(snap.data());
+      saveProgressLocal();
+      if(state.tab==="accueil") render();
+    }, e=>{
+      console.warn("Progress sync interrupted, staying on the local copy:", e);
+    });
+  }catch(e){
+    console.warn("Progress DB unavailable, staying on localStorage:", e);
+    syncStatus = "local";
+  }
+  if(state.tab==="accueil") render();
 }
 
 function chapterMastery(chId){
@@ -604,6 +677,11 @@ function renderAccueil(){
     <div class="eyebrow">HISTOIRE · SUISSE / EPCN</div>
     <h2>Le système politique suisse & les origines de la Grande Guerre</h2>
     <p>16 chapitres, ${total} fiches de vocabulaire anglais-français, un banc de questions corrigées et deux frises chronologiques interactives. Commence par la révision express : elle mélange les deux sujets pour repérer tes points faibles.</p>
+    <div style="color:var(--muted);font-size:12px;margin-bottom:18px;">${
+      syncStatus==="synced" ? "☁️ Progression synchronisée avec ton compte Claude — elle te suit d'un appareil à l'autre."
+      : syncStatus==="local" ? "💾 Progression enregistrée sur cet appareil seulement (synchronisation indisponible ici)."
+      : "Connexion à la sauvegarde de ton compte…"
+    }</div>
     <div class="btnrow">
       <button class="btn primary" id="btnExpress">Révision express — 12 questions</button>
       <button class="btn" id="btnFiches">Fiches du jour (${total})</button>
@@ -1108,6 +1186,7 @@ function render(){
 (function init(){
   loadProgress();
   render();
+  initRemoteProgress();
 })();
 
 </script>
