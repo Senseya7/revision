@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suisse & 1914 — Révision</title>
+<style>
+  :root{
+    --bg:#14161c;
+    --bg2:#191c23;
+    --panel:#20232c;
+    --panel-hi:#262a35;
+    --line:#2c303c;
+    --ink:#eae6da;
+    --muted:#8d90a0;
+    --red:#a8382a;
+    --red-bright:#c9503f;
+    --gold:#c8a24a;
+    --gold-soft:rgba(200,162,74,.16);
+    --good:#5fa876;
+    --bad:#c1554a;
+    --serif:Georgia,'Iowan Old Style','Palatino Linotype',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  ::selection{background:var(--gold-soft);}
+
+  /* ---------- Header ---------- */
+  header.top{
+    padding:22px 28px 0 28px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, var(--bg2), var(--bg) 90%);
+  }
+  .brand{
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  }
+  .brand .mark{
+    width:30px;height:30px;border-radius:4px;
+    background:linear-gradient(135deg,var(--red),var(--red-bright));
+    display:inline-flex;align-items:center;justify-content:center;
+    font-family:var(--serif); font-weight:700; color:#fff; font-size:16px;
+    flex:0 0 auto;
+  }
+  .brand h1{
+    font-family:var(--serif);
+    font-size:26px; font-weight:600; margin:0; letter-spacing:.2px;
+  }
+  .brand .tag{color:var(--muted); font-size:13px; letter-spacing:.08em;}
+  nav.tabs{
+    display:flex; gap:26px; margin-top:18px; overflow-x:auto;
+  }
+  nav.tabs button{
+    background:none;border:none;color:var(--muted);
+    font-size:15px; padding:10px 2px 12px 2px; border-bottom:2px solid transparent;
+    white-space:nowrap;
+  }
+  nav.tabs button.active{color:var(--ink); border-bottom-color:var(--gold);}
+  nav.tabs button:hover{color:var(--ink);}
+
+  main{max-width:1180px;margin:0 auto;padding:28px 28px 90px 28px;}
+
+  .hero{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:30px 34px; margin-bottom:26px;
+  }
+  .hero .eyebrow{color:var(--gold); font-size:13px; margin-bottom:8px;}
+  .hero h2{font-family:var(--serif); font-size:30px; margin:0 0 14px 0; max-width:640px;}
+  .hero p{color:var(--muted); max-width:640px; margin:0 0 20px 0;}
+  .hero .btnrow{display:flex; gap:12px; flex-wrap:wrap;}
+
+  .btn{
+    border:1px solid var(--line); background:var(--panel-hi); color:var(--ink);
+    padding:12px 18px; border-radius:8px; font-size:14.5px; font-weight:600;
+  }
+  .btn:hover{border-color:var(--gold);}
+  .btn.primary{
+    background:linear-gradient(135deg,var(--red),var(--red-bright)); border-color:transparent; color:#fff;
+  }
+  .btn.primary:hover{filter:brightness(1.08);}
+  .btn.small{padding:8px 12px; font-size:13px;}
+  .btn[disabled]{opacity:.45; cursor:default;}
+  .btn[disabled]:hover{border-color:var(--line);}
+
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:26px;
+  }
+  .stat{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px;
+  }
+  .stat .label{color:var(--muted); font-size:12.5px; margin-bottom:10px;}
+  .stat .value{font-family:var(--serif); font-size:34px;}
+  .stat .value small{font-size:16px; color:var(--muted); font-family:var(--sans);}
+  .stat .sub{color:var(--muted); font-size:12.5px; margin-top:6px;}
+  .bar{height:4px;border-radius:2px;background:var(--line); margin-top:10px; overflow:hidden;}
+  .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red-bright));}
+
+  .two-col{display:grid; grid-template-columns:1.5fr 1fr; gap:18px;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px 24px;}
+  .card h3{font-family:var(--serif); font-size:19px; margin:0 0 6px 0;}
+  .card .hint{color:var(--muted); font-size:13.5px; margin-bottom:16px;}
+
+  .chapter-row{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:11px 0; border-top:1px solid var(--line);
+  }
+  .chapter-row:first-of-type{border-top:none;}
+  .chapter-row .num{color:var(--muted); width:20px; font-size:13.5px;}
+  .chapter-row .name{flex:1; font-size:14.5px;}
+  .chapter-row .prog{width:130px; display:flex; align-items:center; gap:8px;}
+  .chapter-row .prog .bar{flex:1;margin-top:0;}
+  .chapter-row .pct{width:34px; text-align:right; font-size:12.5px; color:var(--muted);}
+
+  .trap-mini{border-top:1px solid var(--line); padding:10px 0; font-size:13.5px;}
+  .trap-mini:first-of-type{border-top:none;}
+  .trap-mini b{color:var(--gold);}
+
+  /* ---------- Cours ---------- */
+  .cours-layout{display:grid; grid-template-columns:270px 1fr; gap:22px;}
+  .cours-nav .part-label{
+    color:var(--muted); font-size:11.5px; letter-spacing:.06em; margin:18px 0 8px 4px;
+  }
+  .cours-nav .part-label:first-child{margin-top:0;}
+  .cours-nav button{
+    display:block; width:100%; text-align:left; background:none; border:none;
+    color:var(--muted); padding:9px 12px; border-radius:7px; font-size:14px; margin-bottom:2px;
+  }
+  .cours-nav button.active{background:var(--gold-soft); color:var(--ink); font-weight:600;}
+  .cours-nav button:hover{color:var(--ink);}
+  .cours-content .kicker{color:var(--muted); font-size:12.5px; margin-bottom:4px;}
+  .cours-content h2{font-family:var(--serif); font-size:28px; margin:0 0 4px 0;}
+  .cours-content .subtitle{color:var(--muted); font-style:italic; margin-bottom:20px;}
+  .idea-box{
+    border-left:3px solid var(--gold); background:var(--gold-soft); border-radius:0 8px 8px 0;
+    padding:16px 20px; margin-bottom:22px;
+  }
+  .idea-box .lab{color:var(--gold); font-size:12px; letter-spacing:.06em; margin-bottom:6px;}
+  .idea-box p{margin:0; font-family:var(--serif); font-size:17px;}
+  .details ul{margin:0; padding-left:20px;}
+  .details li{margin-bottom:10px; font-size:14.5px;}
+  .vocab-table{width:100%; border-collapse:collapse; margin-top:20px;}
+  .vocab-table th{text-align:left; color:var(--muted); font-size:12px; font-weight:600; padding:8px 10px; border-bottom:1px solid var(--line);}
+  .vocab-table td{padding:9px 10px; border-bottom:1px solid var(--line); font-size:14px;}
+  .vocab-table td.en{font-weight:600;}
+
+  /* ---------- Entrainement subnav ---------- */
+  .subnav{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px;}
+  .subnav button{
+    background:var(--panel); border:1px solid var(--line); color:var(--muted);
+    padding:9px 16px; border-radius:20px; font-size:13.5px;
+  }
+  .subnav button.active{background:var(--gold-soft); border-color:var(--gold); color:var(--ink);}
+
+  /* flashcards */
+  .flash-wrap{max-width:560px;margin:0 auto;}
+  .flash-meta{display:flex; justify-content:space-between; color:var(--muted); font-size:12.5px; margin-bottom:10px;}
+  .flashcard{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:50px 30px; text-align:center; min-height:230px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  }
+  .flashcard .term{font-family:var(--serif); font-size:28px;}
+  .flashcard .def{color:var(--muted); font-size:15px; max-width:420px; line-height:1.6;}
+  .rate-row{display:flex; gap:10px; justify-content:center; margin-top:20px;}
+  .rate-row .btn.good{border-color:var(--good); color:var(--good);}
+  .rate-row .btn.bad{border-color:var(--bad); color:var(--bad);}
+  .flash-empty{text-align:center; color:var(--muted); padding:60px 0;}
+
+  /* lexique */
+  .lex-search{
+    width:100%; background:var(--panel); border:1px solid var(--line); color:var(--ink);
+    padding:11px 14px; border-radius:8px; margin-bottom:16px; font-size:14px;
+  }
+
+  /* traps */
+  .trap-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:18px 20px; margin-bottom:12px;}
+  .trap-card h4{font-family:var(--serif); margin:0 0 10px 0; font-size:16.5px;}
+  .trap-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:10px;}
+  .trap-side{border-radius:8px; padding:12px 14px; font-size:13.5px;}
+  .trap-side.wrong{background:rgba(193,85,74,.1); border:1px solid rgba(193,85,74,.35);}
+  .trap-side.right{background:rgba(95,168,118,.1); border:1px solid rgba(95,168,118,.35);}
+  .trap-side .tag{font-size:11px; letter-spacing:.05em; margin-bottom:6px; display:block;}
+  .trap-side.wrong .tag{color:var(--bad);}
+  .trap-side.right .tag{color:var(--good);}
+  .trap-card .explain{color:var(--muted); font-size:13px;}
+
+  /* quiz */
+  .quiz-wrap{max-width:680px; margin:0 auto;}
+  .quiz-progress{color:var(--muted); font-size:12.5px; margin-bottom:10px;}
+  .quiz-card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:28px;}
+  .quiz-card .qtext{font-family:var(--serif); font-size:20px; margin-bottom:22px;}
+  .opt{
+    display:block; width:100%; text-align:left; background:var(--bg2); border:1px solid var(--line);
+    color:var(--ink); padding:13px 16px; border-radius:8px; margin-bottom:10px; font-size:14.5px;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt.correct{border-color:var(--good); background:rgba(95,168,118,.12);}
+  .opt.incorrect{border-color:var(--bad); background:rgba(193,85,74,.12);}
+  .feedback{margin-top:14px; padding:14px 16px; border-radius:8px; font-size:13.5px; background:var(--bg2); border:1px solid var(--line);}
+  .feedback.ok{border-color:var(--good);}
+  .feedback.ko{border-color:var(--bad);}
+  .quiz-footer{display:flex; justify-content:flex-end; margin-top:18px;}
+  .exam-item{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:20px; margin-bottom:14px;}
+  .exam-item .qtext{font-family:var(--serif); font-size:16.5px; margin-bottom:14px;}
+  .exam-item label{display:flex; gap:10px; align-items:flex-start; padding:8px 0; font-size:14px; cursor:pointer;}
+  .exam-item label input{margin-top:3px;}
+  .exam-header{
+    position:sticky; top:0; background:var(--bg); z-index:5; padding:14px 0; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;
+  }
+  .exam-header .timer{font-family:var(--serif); font-size:22px;}
+  .exam-header .timer.low{color:var(--bad);}
+  .exam-result{background:var(--panel); border:1px solid var(--gold); border-radius:10px; padding:24px; margin-bottom:20px; text-align:center;}
+  .exam-result .score{font-family:var(--serif); font-size:40px; color:var(--gold);}
+
+  /* timeline */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline:before{content:"";position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .t-item{position:relative; margin-bottom:22px; cursor:pointer;}
+  .t-item:before{
+    content:""; position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--gold);
+  }
+  .t-item.open:before{background:var(--gold);}
+  .t-item .yr{font-family:var(--serif); font-size:17px; color:var(--gold);}
+  .t-item .ttl{font-weight:600; font-size:14.5px; margin-top:2px;}
+  .t-item .body{color:var(--muted); font-size:13.5px; margin-top:8px; max-width:560px; display:none;}
+  .t-item.open .body{display:block;}
+
+  .alliance-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .alliance-col{border-radius:10px; padding:22px; border:1px solid var(--line);}
+  .alliance-col.entente{background:rgba(95,168,118,.08);}
+  .alliance-col.triplice{background:rgba(193,85,74,.08);}
+  .alliance-col h4{font-family:var(--serif); font-size:19px; margin:0 0 4px 0;}
+  .alliance-col .sub{color:var(--muted); font-size:12.5px; margin-bottom:14px;}
+  .chip{display:inline-block; background:var(--panel-hi); border:1px solid var(--line); padding:6px 12px; border-radius:16px; font-size:13px; margin:0 6px 8px 0;}
+  .callout{background:var(--gold-soft); border:1px solid var(--gold); border-radius:8px; padding:14px 16px; font-size:13.5px; margin-top:18px;}
+
+  .fab{
+    position:fixed; bottom:24px; right:24px; background:var(--gold); color:#1a1500;
+    padding:12px 18px; border-radius:24px; font-weight:700; border:none; font-size:13.5px;
+    box-shadow:0 6px 18px rgba(0,0,0,.4);
+  }
+
+  @media(max-width:820px){
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .two-col{grid-template-columns:1fr;}
+    .cours-layout{grid-template-columns:1fr;}
+    .trap-grid{grid-template-columns:1fr;}
+    .alliance-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark">CH</span>
+    <h1>Suisse &amp; 1914</h1>
+    <span class="tag">RÉVISION D'HISTOIRE</span>
+  </div>
+  <nav class="tabs" id="mainTabs"></nav>
+</header>
+<main id="app"></main>
+<button class="fab" id="fabBtn">Révision express</button>
+
+<script>
+/* ============================= DATA ============================= */
+
+const CHAPTERS = [
+  {id:1, part:1, title:"Les régimes politiques", subtitle:"Absolute monarchy · constitutional monarchy · dictatorship · democracy",
+    idea:"Un régime politique définit qui détient le pouvoir, et si ce pouvoir est limité ou non.",
+    details:[
+      "Absolute monarchy : un monarque héréditaire exerce un pouvoir absolu jusqu'à sa mort ou son abdication. Ex : Arabie saoudite, Oman, Brunei, Qatar, Vatican.",
+      "Constitutional monarchy : le monarque agit selon une constitution ; le pouvoir réel appartient au parlement élu et au premier ministre. Ex : Royaume-Uni, Japon, Norvège, Pays-Bas, Maroc, Suède, Espagne, Jordanie.",
+      "Dictatorship : pouvoir absolu d'un individu ou d'un petit groupe, sans constitution ni opposition, souvent lié à une crise sociale. Ex : Corée du Nord, Myanmar, Staline, Hitler, Mussolini."
+    ],
+    vocab:[["Absolute monarchy","monarchie absolue"],["Constitutional monarchy","monarchie constitutionnelle"],["Dictatorship","dictature"],["Autocratic sovereignty","souveraineté autocratique"]]},
+
+  {id:2, part:1, title:"Les trois démocraties", subtitle:"Direct · representative · semi-direct (hybrid)",
+    idea:"La démocratie n'est pas unique : la Suisse combine les trois formes à la fois.",
+    details:[
+      "Direct democracy : les citoyens votent eux-mêmes les lois en assemblée, sans intermédiaire. Nécessite une petite population. Ex : Appenzell Innerrhoden et Glarus (Landsgemeinde).",
+      "Representative democracy : des représentants élus légifèrent au nom du peuple pour une durée déterminée. Ex : Allemagne, Brésil, Inde, France, USA.",
+      "Semi-direct / hybrid democracy : représentants élus + droit de proposer une initiative populaire ou de demander un référendum. Le meilleur exemple est la Suisse."
+    ],
+    vocab:[["Direct democracy","démocratie directe"],["Representative democracy","démocratie représentative"],["Semi-direct democracy","démocratie semi-directe"],["Landsgemeinde","assemblée populaire à ciel ouvert"]]},
+
+  {id:3, part:1, title:"Gauche et droite", subtitle:"Le rôle de l'état, de la société et de l'économie",
+    idea:"Aucun parti suisse n'a la majorité seul : les alliances se font selon les sujets.",
+    details:[
+      "Left-wing : état social fort qui réduit les inégalités, intérêts des travailleurs, contrôle des prix, plus de paix / moins de militaire.",
+      "Right-wing : liberté et responsabilité individuelle, intérêts des employeurs, libre entreprise, défense nationale forte."
+    ],
+    vocab:[["Left-wing","gauche"],["Right-wing","droite"],["Welfare state","état social"]]},
+
+  {id:4, part:1, title:"La Suisse en un coup d'oeil", subtitle:"26 cantons · 3 pouvoirs · 4 langues",
+    idea:"Un état fédéral né en 1848, où le pouvoir est partagé entre trois niveaux.",
+    details:[
+      "26 cantons (23 historiques, 3 divisés en deux demi-cantons).",
+      "Trois pouvoirs : législatif (Parlement), exécutif (Conseil fédéral), judiciaire (tribunaux).",
+      "4 langues nationales : allemand (61%), français (23%), italien (8%), romanche (0.5%).",
+      "Fédéralisme : le pouvoir est partagé entre la Confédération, les 26 cantons et les 2110 communes."
+    ],
+    vocab:[["Canton","canton"],["Federalism","fédéralisme"],["Separation of powers","séparation des pouvoirs"],["Commune","commune"]]},
+
+  {id:5, part:1, title:"Le Parlement", subtitle:"National Council · Council of States · Federal Assembly",
+    idea:"Deux chambres, mêmes pouvoirs : le peuple et les cantons doivent être d'accord.",
+    details:[
+      "National Council : 200 députés, élus tous les 4 ans, proportionnellement à la population de chaque canton (19 pour Vaud, 35 pour Zurich, 1 pour Glaris). C'est la « chambre du peuple ».",
+      "Council of States : 46 sénateurs, 2 par canton (1 pour les anciens demi-cantons). C'est la « chambre des cantons ».",
+      "Federal Assembly = les deux chambres réunies ; elle élit le Conseil fédéral, les juges fédéraux et le chancelier."
+    ],
+    vocab:[["National Council","Conseil national"],["Council of States","Conseil des États"],["Federal Assembly","Assemblée fédérale"]]},
+
+  {id:6, part:1, title:"Le Conseil fédéral", subtitle:"7 ministres égaux · la formule magique",
+    idea:"7 ministres égaux, une présidence tournante d'un an, une répartition des sièges négociée.",
+    details:[
+      "Federal Council : gouvernement suisse, 7 membres égaux. Ils pratiquent la collégialité : la décision commune est défendue publiquement, même par ceux qui n'étaient pas d'accord en interne.",
+      "Magic formula (2:2:2:1) : répartition des 7 sièges entre les partis les plus forts au Parlement.",
+      "Le Conseil fédéral est élu par l'Assemblée fédérale pour 4 ans, rééligible sans limite de mandats."
+    ],
+    vocab:[["Federal Council","Conseil fédéral"],["Magic formula","formule magique"],["Collegiality","collégialité"]]},
+
+  {id:7, part:1, title:"Les droits populaires", subtitle:"Referendum · popular initiative",
+    idea:"Le peuple a toujours le dernier mot, via deux instruments bien distincts.",
+    details:[
+      "Optional referendum : pour s'opposer à une loi déjà votée par le Parlement. Il faut 50 000 signatures en 100 jours. Majorité simple des votants suffit.",
+      "Mandatory referendum : obligatoire pour toute modification de la Constitution. Il faut une double majorité (majorité du peuple ET des cantons).",
+      "Popular initiative : pour proposer un changement à la Constitution. Il faut 100 000 signatures en 18 mois."
+    ],
+    vocab:[["Optional referendum","référendum facultatif"],["Mandatory referendum","référendum obligatoire"],["Popular initiative","initiative populaire"],["Double majority","double majorité"]]},
+
+  {id:8, part:1, title:"Histoire & dates clés", subtitle:"De 1291 à 2000",
+    idea:"De l'alliance de 1291 à la Constitution de 2000 : une construction progressive.",
+    details:[
+      "1291 : alliance Uri–Schwyz–Unterwald, origine de la Confédération.",
+      "1847–1848 : guerre du Sonderbund (libéraux contre conservateurs) puis première Constitution fédérale (naissance de l'état fédéral démocratique).",
+      "1874 / 1891 : le référendum est introduit (1874), l'initiative populaire est introduite (1891).",
+      "1971 : droit de vote des femmes au niveau fédéral.",
+      "1979 : création du canton du Jura, 26e canton.",
+      "2000 : entrée en vigueur de la 3e Constitution fédérale (séparation des pouvoirs)."
+    ],
+    vocab:[["Sonderbund War","guerre du Sonderbund"],["Federal Constitution","Constitution fédérale"],["Women's suffrage","droit de vote des femmes"]]},
+
+  {id:9, part:2, title:"L'étincelle : Sarajevo", subtitle:"28 juin 1914",
+    idea:"Un assassinat suffit à mettre le feu aux poudres — mais seulement parce que tout était déjà prêt à exploser.",
+    details:[
+      "28 juin 1914 : assassinat de l'archiduc François-Ferdinand par Gavrilo Princip, un Serbe de Bosnie, à Sarajevo — alors en Autriche-Hongrie.",
+      "Cet événement déclenche la guerre, mais les causes profondes sont multiples et bien antérieures à 1914."
+    ],
+    vocab:[["Assassination","assassinat"],["Trigger event","élément déclencheur"],["Archduke","archiduc"]]},
+
+  {id:10, part:2, title:"La revanche française", subtitle:"Alsace-Lorraine, 1870",
+    idea:"La France n'a jamais digéré la défaite de 1870.",
+    details:[
+      "Défaite française de 1870 face à la Prusse : perte de l'Alsace et de la Lorraine.",
+      "Sentiment de revanche largement partagé dans une France d'environ 39 millions d'habitants en 1911."
+    ],
+    vocab:[["Revanchism","revanchisme"],["Alsace-Lorraine","Alsace-Lorraine"]]},
+
+  {id:11, part:2, title:"Rivalités coloniales", subtitle:"Allemagne et Italie, arrivées tard",
+    idea:"Arrivées tard dans la course aux colonies, l'Allemagne et l'Italie n'ont eu que des « miettes ».",
+    details:[
+      "Une colonie = ressources en matières premières, émigration, débouché commercial, marché fermé, main-d'oeuvre et soldats potentiels, influence.",
+      "Allemagne (unifiée par Bismarck en 1871) : colonies dès 1884 (Togo, Cameroun, Namibie, Rwanda, Tanzanie) ; rivalité avec la France (crise marocaine de 1911).",
+      "Italie (unifiée autour de Cavour) : Somalie italienne (1889), nord de la Libye (1911)."
+    ],
+    vocab:[["Colonial rivalry","rivalité coloniale"],["Unification","unification"],["Sphere of influence","sphère d'influence"]]},
+
+  {id:12, part:2, title:"La course aux armements", subtitle:"Se réarmer pour dissuader — ou attaquer",
+    idea:"Une compétition militaire alimentée par le lobbying des industriels de l'armement.",
+    details:[
+      "Course aux armements entre les grandes puissances européennes.",
+      "Rivalité navale marquée entre le Royaume-Uni et l'Allemagne."
+    ],
+    vocab:[["Arms race","course aux armements"],["Lobbying","lobbyisme"]]},
+
+  {id:13, part:2, title:"La poudrière des Balkans", subtitle:"Tensions ethniques et nationalistes",
+    idea:"Depuis 1908, la région est sous tension permanente.",
+    details:[
+      "L'Autriche-Hongrie veut soumettre la Serbie, son ancienne vassale (jusqu'en 1903), qui s'est depuis rapprochée de la Russie.",
+      "L'annexion de la Bosnie-Herzégovine par l'Autriche-Hongrie en 1908 attise les tensions ethniques et nationalistes."
+    ],
+    vocab:[["Powder keg","poudrière"],["Annexation","annexion"],["Vassal state","état vassal"]]},
+
+  {id:14, part:2, title:"Nationalismes", subtitle:"Pan-Germanism · Pan-Slavism",
+    idea:"Exalter la nation par l'industrie, les colonies, la démographie et la technologie.",
+    details:[
+      "Pan-Germanism : nationalisme allemand prônant l'unité et l'expansion des peuples germaniques.",
+      "Pan-Slavism : nationalisme slave, soutenu par la Russie, en lien direct avec la Serbie."
+    ],
+    vocab:[["Nationalism","nationalisme"],["Pan-Germanism","pangermanisme"],["Pan-Slavism","panslavisme"]]},
+
+  {id:15, part:2, title:"Rivalités économiques", subtitle:"L'Allemagne défie le Royaume-Uni",
+    idea:"L'Allemagne défie la suprématie industrielle et navale britannique.",
+    details:[
+      "L'Allemagne développe ses flottes marchande et militaire, en concurrence directe avec le Royaume-Uni, alors 1ère marine mondiale.",
+      "Le manque de ressources financières allemandes la rend dépendante des investissements étrangers, notamment français."
+    ],
+    vocab:[["Economic rivalry","rivalité économique"],["Naval power","puissance navale"]]},
+
+  {id:16, part:2, title:"Le jeu des alliances", subtitle:"Triple Entente vs Triplice",
+    idea:"Deux blocs se font face — jusqu'à ce qu'un pays change de camp.",
+    details:[
+      "Triple Entente : France, Royaume-Uni, Russie.",
+      "Triple Alliance / Triplice : Allemagne, Autriche-Hongrie, Italie — mais l'Italie change de camp en cours de guerre et rejoint l'Entente en 1915.",
+      "Autres acteurs : Serbie alliée à la Russie ; Bulgarie et Empire ottoman alliés à l'Allemagne et l'Autriche-Hongrie ; les USA soutiennent l'Entente dès 1917 ; Roumanie, Grèce, Portugal et Japon rejoignent aussi l'Entente.",
+      "Effectifs : environ 27 millions de soldats pour l'Entente (+15 millions de soldats russes) contre environ 25 millions pour la Triplice."
+    ],
+    vocab:[["Triple Entente","Triple-Entente"],["Triple Alliance / Triplice","Triplice"],["Central Powers","Empires centraux"]]}
+];
+
+// Flashcards: flattened from chapter vocab + a few extra key terms
+const CARDS = [];
+CHAPTERS.forEach(ch=>{
+  ch.vocab.forEach((v,i)=>{
+    CARDS.push({id:"c"+ch.id+"-"+i, en:v[0], fr:v[1], chapterId:ch.id});
+  });
+});
+CARDS.push({id:"extra1", en:"Neutrality", fr:"neutralité — la Suisse ne rejoint aucune alliance militaire", chapterId:16});
+CARDS.push({id:"extra2", en:"Bilateral agreements", fr:"accords bilatéraux Suisse–UE (paquets I et II)", chapterId:4});
+CARDS.push({id:"extra3", en:"Cantonal sovereignty", fr:"chaque canton a son propre parlement, gouvernement et constitution", chapterId:4});
+
+const QUESTIONS = [
+  {id:"q1", chapterId:1, prompt:"In an absolute monarchy, who typically holds power until death or abdication?", options:["The monarch","An elected parliament","A council of judges","A political party"], correct:0, explain:"In an absolute monarchy, the monarch holds autocratic sovereignty until death or abdication."},
+  {id:"q2", chapterId:1, prompt:"Which country below is an example of a constitutional monarchy?", options:["Saudi Arabia","Norway","North Korea","Vatican"], correct:1, explain:"Norway is a constitutional monarchy; the monarch acts within a constitution and real power lies with an elected parliament."},
+  {id:"q3", chapterId:2, prompt:"Which Swiss cantons still hold an outdoor people's assembly (Landsgemeinde)?", options:["Zurich and Bern","Geneva and Vaud","Glarus and Appenzell Innerrhoden","Ticino and Valais"], correct:2, explain:"Glarus and Appenzell Innerrhoden still practise the Landsgemeinde, an ancient form of direct democracy."},
+  {id:"q4", chapterId:2, prompt:"What best describes Switzerland's political system as a whole?", options:["Pure direct democracy","Pure representative democracy","Semi-direct (hybrid) democracy","Constitutional monarchy"], correct:2, explain:"Switzerland combines elected representatives with direct-democracy tools (referendum, popular initiative) — a hybrid / semi-direct democracy."},
+  {id:"q5", chapterId:3, prompt:"Which of these is typically a right-wing priority?", options:["Price controls","Strong national defence","A peace-focused, less military policy","Expanding public services"], correct:1, explain:"Right-wing platforms typically emphasise free enterprise, personal responsibility and a strong national defence."},
+  {id:"q6", chapterId:3, prompt:"Which of these is typically a left-wing priority?", options:["Free enterprise","A strong social state that levels disparities","Strong national defence","Personal responsibility"], correct:1, explain:"Left-wing platforms typically emphasise a strong social state and workers' interests."},
+  {id:"q7", chapterId:4, prompt:"How many cantons make up Switzerland today?", options:["20","23","26","31"], correct:2, explain:"Switzerland has 26 cantons (23 historical ones, 3 split into half-cantons)."},
+  {id:"q8", chapterId:4, prompt:"Which are Switzerland's four national languages?", options:["German, French, Italian, Romansh","German, French, English, Italian","French, Italian, Spanish, German","German, French, Italian, Latin"], correct:0, explain:"Switzerland's four national languages are German, French, Italian and Romansh."},
+  {id:"q9", chapterId:5, prompt:"How many members sit in the National Council?", options:["46","100","200","246"], correct:2, explain:"The National Council ('people's chamber') has 200 members, elected proportionally to cantonal population."},
+  {id:"q10", chapterId:5, prompt:"How many seats does each canton generally hold in the Council of States?", options:["1","2","4","It depends on population"], correct:1, explain:"Each canton holds 2 seats in the Council of States (former half-cantons hold 1), regardless of population."},
+  {id:"q11", chapterId:6, prompt:"How many members does the Federal Council have?", options:["5","7","9","12"], correct:1, explain:"The Federal Council (Swiss government) has 7 members of equal standing."},
+  {id:"q12", chapterId:6, prompt:"What does the 'magic formula' regulate?", options:["Cantonal border changes","The distribution of Federal Council seats among parties","The federal budget","Referendum signature thresholds"], correct:1, explain:"The magic formula (2:2:2:1) is the proportional distribution of the 7 Federal Council seats among the strongest parties."},
+  {id:"q13", chapterId:7, prompt:"How many signatures, and within how many days, are needed for an optional referendum?", options:["50,000 signatures / 100 days","100,000 signatures / 18 months","100,000 signatures / 100 days","50,000 signatures / 18 months"], correct:0, explain:"An optional referendum requires 50,000 valid signatures within 100 days (or a request by 8 cantons)."},
+  {id:"q14", chapterId:7, prompt:"How many signatures, and within how much time, are needed for a popular initiative?", options:["50,000 signatures / 100 days","100,000 signatures / 18 months","100,000 signatures / 100 days","50,000 signatures / 18 months"], correct:1, explain:"A popular initiative to amend the Constitution requires 100,000 valid signatures within 18 months."},
+  {id:"q15", chapterId:7, prompt:"A mandatory referendum (constitutional amendment) requires what kind of majority?", options:["A simple majority of voters only","A double majority: the People AND the cantons","A two-thirds majority in Parliament","A majority of the Federal Council"], correct:1, explain:"Constitutional amendments require a double majority: a majority of the People and a majority of the cantons."},
+  {id:"q16", chapterId:8, prompt:"In which year did Swiss women get the right to vote at federal level?", options:["1848","1919","1971","2000"], correct:2, explain:"Swiss women obtained the right to vote at federal level in February 1971."},
+  {id:"q17", chapterId:8, prompt:"Which canton joined Switzerland in 1979, becoming the 26th canton?", options:["Ticino","Jura","Vaud","Zug"], correct:1, explain:"The canton of Jura was created in 1979, bringing the total to 26 cantons."},
+  {id:"q18", chapterId:9, prompt:"What event directly triggered the outbreak of World War I?", options:["The Moroccan crisis of 1911","The assassination of Archduke Franz Ferdinand in Sarajevo","The annexation of Bosnia-Herzegovina in 1908","The German invasion of Belgium"], correct:1, explain:"Franz Ferdinand was assassinated in Sarajevo on 28 June 1914, directly triggering WWI."},
+  {id:"q19", chapterId:9, prompt:"Who assassinated Archduke Franz Ferdinand?", options:["A Serbian army officer","A Bosnian Serb nationalist, Gavrilo Princip","A French spy","An Austrian anarchist"], correct:1, explain:"Gavrilo Princip, a Bosnian Serb, carried out the assassination in Sarajevo."},
+  {id:"q20", chapterId:10, prompt:"France's desire for revenge before WWI was mainly linked to the loss of which territories in 1870?", options:["Alsace and Lorraine","Normandy and Brittany","Savoy and Nice","Corsica"], correct:0, explain:"France lost Alsace and Lorraine to Germany after its defeat in 1870, fuelling revanchisme."},
+  {id:"q21", chapterId:10, prompt:"Revanchism before WWI mainly concerned which country's grievance?", options:["Germany","France","Italy","Russia"], correct:1, explain:"Revanchism refers specifically to France's desire to reclaim Alsace-Lorraine."},
+  {id:"q22", chapterId:11, prompt:"Why did Germany and Italy feel frustrated about colonies before WWI?", options:["They had no industry","They unified late and only got 'crumbs' of colonial territory","They refused to colonize","They had too many colonies already"], correct:1, explain:"Germany and Italy, unified late in the 19th century, joined the colonial race late and obtained only minor territories."},
+  {id:"q23", chapterId:11, prompt:"The 1911 crisis over colonial rivalry between France and Germany took place in...", options:["Libya","Morocco","Tunisia","Egypt"], correct:1, explain:"The 1911 Moroccan crisis pitted French and German colonial interests against each other."},
+  {id:"q24", chapterId:12, prompt:"What term describes the pre-WWI military build-up among the great powers?", options:["Arms race","Cold War","Blitzkrieg","Trench warfare"], correct:0, explain:"The pre-WWI military build-up, fuelled by arms industrialists, is called the arms race."},
+  {id:"q25", chapterId:13, prompt:"Which region is called the 'powder keg' of pre-WWI Europe due to ethnic and nationalist tensions?", options:["Alsace-Lorraine","The Balkans","Morocco","Scandinavia"], correct:1, explain:"The Balkans were the 'powder keg' due to Austro-Hungarian ambitions and rising nationalism."},
+  {id:"q26", chapterId:13, prompt:"Austria-Hungary annexed which region in 1908, fuelling Balkan tensions?", options:["Serbia","Bosnia-Herzegovina","Bulgaria","Montenegro"], correct:1, explain:"The 1908 annexation of Bosnia-Herzegovina by Austria-Hungary sharply raised regional tensions."},
+  {id:"q27", chapterId:14, prompt:"Pan-Slavism was mainly supported by which power?", options:["Germany","Austria-Hungary","Russia","Italy"], correct:2, explain:"Russia supported Pan-Slavism, a nationalist movement uniting Slavic peoples, including Serbia."},
+  {id:"q28", chapterId:14, prompt:"Pan-Germanism refers to...", options:["Slavic unity nationalism","A German nationalist unity/expansion movement","Italian colonial ambition","French revanchism"], correct:1, explain:"Pan-Germanism was a nationalist movement promoting the unity and expansion of German-speaking peoples."},
+  {id:"q29", chapterId:15, prompt:"Germany's naval expansion before WWI directly challenged which power's supremacy?", options:["France","The United Kingdom","Russia","Italy"], correct:1, explain:"Germany's growing navy directly challenged British naval supremacy, the world's largest at the time."},
+  {id:"q30", chapterId:16, prompt:"Which alliance grouped Germany, Austria-Hungary and Italy before WWI?", options:["Triple Entente","Triple Alliance (Triplice)","Warsaw Pact","Holy Alliance"], correct:1, explain:"The Triple Alliance (Triplice) united Germany, Austria-Hungary and Italy — though Italy later switched sides."},
+  {id:"q31", chapterId:16, prompt:"Which country famously switched sides during WWI, leaving the Triple Alliance?", options:["Germany","Austria-Hungary","Italy","Serbia"], correct:2, explain:"Italy left the Triple Alliance and joined the Entente powers in 1915."},
+  {id:"q32", chapterId:16, prompt:"Roughly how many soldiers did the Entente powers mobilise (including Russia)?", options:["About 10 million","About 25 million","About 42 million","About 100 million"], correct:2, explain:"About 27 million Entente soldiers plus about 15 million Russian soldiers — roughly 42 million total."}
+];
+
+const EXAM_IDS = ["q1","q3","q5","q7","q9","q11","q13","q16","q18","q20","q22","q24","q25","q27","q29","q30","q2","q14","q23","q31"];
+
+const TRAPS = [
+  {title:"Référendum facultatif vs Initiative populaire",
+   wrong:"« Le référendum sert à proposer une nouvelle loi »", right:"Le référendum facultatif sert à s'opposer à une loi déjà votée (50 000 signatures / 100 jours). L'initiative populaire sert à proposer un changement de la Constitution (100 000 signatures / 18 mois).",
+   explain:"Astuce : « initiative » = on prend l'initiative de créer quelque chose de nouveau (Constitution). « Référendum » = on réagit contre une loi existante."},
+  {title:"National Council vs Council of States",
+   wrong:"« Les deux chambres représentent la même chose »", right:"Le National Council (200 sièges) représente le peuple, proportionnellement à la population de chaque canton. Le Council of States (46 sièges) représente les cantons, à raison de 2 sièges chacun (1 pour les ex-demi-cantons).",
+   explain:"Astuce : « National » → peuple / nation entière. « States » → cantons (comme les « states » américains)."},
+  {title:"Triple Entente vs Triplice",
+   wrong:"« L'Italie a toujours combattu aux côtés de l'Allemagne »", right:"L'Italie faisait partie de la Triple Alliance (avec l'Allemagne et l'Autriche-Hongrie) avant-guerre, mais elle a changé de camp et rejoint la Triple Entente (France, Royaume-Uni, Russie) en 1915.",
+   explain:"C'est un piège classique de test : bien préciser qu'il s'agit de la composition « avant-guerre »."},
+  {title:"Référendum obligatoire vs facultatif",
+   wrong:"« Tous les référendums demandent la même majorité »", right:"Le référendum obligatoire (changement constitutionnel) exige une double majorité (peuple ET cantons). Le référendum facultatif (contre une loi) exige seulement une majorité simple des votants.",
+   explain:"Retenez : « obligatoire » = plus exigeant = double majorité."},
+  {title:"Démocratie directe vs semi-directe",
+   wrong:"« La Suisse est une démocratie directe »", right:"La démocratie directe pure n'existe qu'à petite échelle (Glarus, Appenzell Innerrhoden — Landsgemeinde). La Suisse dans son ensemble est une démocratie semi-directe (représentants élus + droits populaires).",
+   explain:"La Suisse entière ne vote pas toutes les lois en assemblée : elle élit des représentants ET garde des outils de démocratie directe."},
+  {title:"Cause immédiate vs causes profondes de la 1GM",
+   wrong:"« L'assassinat de Sarajevo est la seule cause de la guerre »", right:"L'assassinat est l'élément déclencheur (immédiat). Les causes profondes sont multiples : revanchisme français, rivalités coloniales, course aux armements, poudrière des Balkans, nationalismes, rivalités économiques, jeu des alliances.",
+   explain:"Un bon test attend que vous distinguiez le déclencheur (1 événement, 1 jour) des causes structurelles (des décennies)."},
+  {title:"La Suisse et les organisations internationales",
+   wrong:"« La Suisse est membre de l'UE et de l'OTAN »", right:"La Suisse n'est membre NI de l'UE NI de l'OTAN (juste un « Partnership for Peace »). Elle EST membre de l'ONU (depuis 2002), du Conseil de l'Europe, de l'OSCE et de l'AELE/EFTA.",
+   explain:"La neutralité suisse explique cette position : coopération, mais pas d'alliance militaire contraignante ni d'intégration politique européenne."},
+  {title:"Formule magique vs séparation des pouvoirs",
+   wrong:"« La formule magique répartit les 3 pouvoirs de l'état »", right:"La formule magique concerne uniquement la répartition des 7 sièges du Conseil fédéral (l'exécutif) entre les partis. La séparation des pouvoirs, elle, distingue le législatif, l'exécutif et le judiciaire.",
+   explain:"Deux notions différentes qui apparaissent souvent dans la même phrase du cours — à ne pas confondre à l'examen."}
+];
+
+const TIMELINE = [
+  {yr:"1291", ttl:"Old Confederation — Alliances", body:"Pour assurer leur sécurité, les cités et régions forment des alliances. L'alliance entre Uri, Schwyz et Unterwalden est considérée comme l'origine de la Confédération suisse."},
+  {yr:"1798–1802", ttl:"Helvetic Republic", body:"Suite à l'invasion française, la Confédération devient un état unitaire, la République helvétique, dirigé depuis Paris."},
+  {yr:"1803–1814", ttl:"Mediation", body:"Napoléon impose une constitution (Acte de Médiation) qui restaure une certaine autonomie aux cantons et fixe la plupart des frontières cantonales."},
+  {yr:"1815", ttl:"Federal Treaty — Neutrality", body:"Après la défaite de Napoléon, les grandes puissances européennes reconnaissent la neutralité suisse et fixent ses frontières actuelles."},
+  {yr:"1847–1848", ttl:"Sonderbund War", body:"Guerre civile entre cantons libéraux et cantons catholiques conservateurs sur l'organisation de la Confédération. Les forces libérales l'emportent."},
+  {yr:"1848", ttl:"Federal Constitution", body:"La Constitution fédérale donne aux citoyens (hommes) le droit de vote et d'éligibilité. Système bicaméral introduit (National Council + Council of States élisant le Conseil fédéral)."},
+  {yr:"1874 / 1891", ttl:"Expanded democracy", body:"Le référendum est introduit en 1874, l'initiative populaire en 1891 : les droits démocratiques s'étendent au niveau fédéral."},
+  {yr:"1914–1918", ttl:"WWI & General strike", body:"Pauvreté et chômage durant la 1GM, idées socialistes de la révolution russe : grève générale en 1918."},
+  {yr:"1919 / 1929", ttl:"Proportional representation", body:"Le National Council est élu à la proportionnelle dès 1919 ; un deuxième conservateur catholique puis un représentant paysan (SVP) entrent au Conseil fédéral."},
+  {yr:"1939–1945", ttl:"WWII — Inclusion of the left", body:"Les forces politiques se rapprochent. Un premier social-démocrate entre au gouvernement en 1943, un second en 1951."},
+  {yr:"1971", ttl:"Women's suffrage", body:"En février 1971, 66% de l'électorat (alors exclusivement masculin) vote en faveur du droit de vote des femmes au niveau fédéral."},
+  {yr:"1979", ttl:"New canton — Jura", body:"En 1978, 82% des votants suisses disent oui à la création du canton du Jura. Depuis 1979, la Suisse compte 26 cantons."},
+  {yr:"2000", ttl:"Third Federal Constitution", body:"La Constitution totalement révisée règle le partage des pouvoirs entre Confédération et cantons ; entrée en vigueur en 2000, toujours valable aujourd'hui."}
+];
+
+const ALLIANCES = {
+  entente:["France","Royaume-Uni","Russie","Serbie (dès le début)","Italie (dès 1915)","Roumanie","Grèce","Portugal","Japon","USA (soutien dès 1917)"],
+  triplice:["Allemagne","Autriche-Hongrie","Italie (jusqu'en 1915 seulement)"],
+  centrales_annexes:["Empire ottoman (allié Allemagne/A-H)","Bulgarie (allié Allemagne/A-H)"]
+};
+
+/* ============================= STATE ============================= */
+
+let progress = {chapterScores:{}, cardBox:{}, questionsAsked:0, lastExam:null};
+let state = {tab:"accueil", coursCh:1, entSub:"fiches", frisesSub:"chrono"};
+let flashState = {order:[], idx:0, flipped:false};
+let quizState = null; // {mode, list, idx, answers, submitted, timerId, secondsLeft}
+
+const STORAGE_KEY = "swiss-wwi-progress";
+
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){ progress = JSON.parse(raw); }
+  }catch(e){
+    // localStorage unavailable (private browsing, restricted iframe...) — session stays in memory only
+    console.warn("Progress could not be loaded, starting fresh:", e);
+  }
+}
+function saveProgress(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  }catch(e){
+    console.warn("Progress could not be saved for this session:", e);
+  }
+}
+
+function chapterMastery(chId){
+  const s = progress.chapterScores[chId];
+  if(!s || s.total===0) return 0;
+  return Math.round((s.correct/s.total)*100);
+}
+function overallMastery(){
+  let c=0,t=0;
+  Object.values(progress.chapterScores).forEach(s=>{c+=s.correct;t+=s.total;});
+  return t===0?0:Math.round((c/t)*100);
+}
+function cardsAcquiredCount(){
+  return CARDS.filter(c=> (progress.cardBox[c.id]||1) >= 4).length;
+}
+function registerAnswer(chapterId, isCorrect){
+  if(!progress.chapterScores[chapterId]) progress.chapterScores[chapterId]={correct:0,total:0};
+  progress.chapterScores[chapterId].total++;
+  if(isCorrect) progress.chapterScores[chapterId].correct++;
+  progress.questionsAsked++;
+  saveProgress();
+}
+
+/* ============================= NAV ============================= */
+
+const TABS = [
+  {id:"accueil", label:"Accueil"},
+  {id:"cours", label:"Cours"},
+  {id:"entrainement", label:"Entraînement"},
+  {id:"frises", label:"Frises"},
+  {id:"examen", label:"Examen blanc"}
+];
+
+function renderNav(){
+  const nav = document.getElementById("mainTabs");
+  nav.innerHTML = TABS.map(t=>
+    `<button data-tab="${t.id}" class="${state.tab===t.id?'active':''}">${t.label}</button>`
+  ).join("");
+  nav.querySelectorAll("button").forEach(b=>{
+    b.onclick = ()=>{ state.tab=b.dataset.tab; quizState=null; render(); };
+  });
+}
+
+function goto(tab, extra){
+  state.tab = tab;
+  if(extra) Object.assign(state, extra);
+  render();
+}
+
+document.getElementById("fabBtn").onclick = ()=>{ startQuiz("express"); goto("entrainement", {entSub:"quiz-live"}); };
+
+/* ============================= RENDER: ACCUEIL ============================= */
+
+function renderAccueil(){
+  const mastery = overallMastery();
+  const acquired = cardsAcquiredCount();
+  const total = CARDS.length;
+  const lowestChapters = CHAPTERS.map(c=>({c, m:chapterMastery(c.id)})).sort((a,b)=>a.m-b.m).slice(0,3);
+
+  return `
+  <div class="hero">
+    <div class="eyebrow">HISTOIRE · SUISSE / EPCN</div>
+    <h2>Le système politique suisse & les origines de la Grande Guerre</h2>
+    <p>16 chapitres, ${total} fiches de vocabulaire anglais-français, un banc de questions corrigées et deux frises chronologiques interactives. Commence par la révision express : elle mélange les deux sujets pour repérer tes points faibles.</p>
+    <div class="btnrow">
+      <button class="btn primary" id="btnExpress">Révision express — 12 questions</button>
+      <button class="btn" id="btnFiches">Fiches du jour (${total})</button>
+      <button class="btn" id="btnExam">Examen blanc</button>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat">
+      <div class="label">MAÎTRISE GLOBALE</div>
+      <div class="value">${mastery}<small>%</small></div>
+      <div class="bar"><span style="width:${mastery}%"></span></div>
+    </div>
+    <div class="stat">
+      <div class="label">FICHES ACQUISES</div>
+      <div class="value">${acquired}<small>/${total}</small></div>
+      <div class="sub">${total-acquired} à revoir</div>
+    </div>
+    <div class="stat">
+      <div class="label">QUESTIONS POSÉES</div>
+      <div class="value">${progress.questionsAsked}</div>
+      <div class="sub">depuis le début</div>
+    </div>
+    <div class="stat">
+      <div class="label">DERNIER EXAMEN BLANC</div>
+      <div class="value">${progress.lastExam? progress.lastExam.score+'<small>/'+progress.lastExam.total+'</small>' : '—'}</div>
+      <div class="sub">${progress.lastExam? progress.lastExam.date : 'pas encore passé'}</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h3>Où tu en es, chapitre par chapitre</h3>
+      <div class="hint">La barre monte quand tu réponds juste en quiz.</div>
+      ${CHAPTERS.map(c=>{
+        const m = chapterMastery(c.id);
+        return `<div class="chapter-row">
+          <span class="num">${c.id}</span>
+          <span class="name">${c.title}</span>
+          <span class="prog"><span class="bar"><span style="width:${m}%"></span></span><span class="pct">${m}%</span></span>
+        </div>`;
+      }).join("")}
+    </div>
+    <div class="card">
+      <h3>À travailler en priorité</h3>
+      <div class="hint">${progress.questionsAsked===0? "Fais une première révision express : le site saura alors où tu es fragile." : "Chapitres avec le score le plus bas :"}</div>
+      ${progress.questionsAsked===0? "" : lowestChapters.map(x=>`
+        <div class="chapter-row"><span class="num">${x.c.id}</span><span class="name">${x.c.title}</span><span class="pct">${x.m}%</span></div>
+      `).join("")}
+      <h3 style="margin-top:22px;">Pièges classiques</h3>
+      ${TRAPS.slice(0,3).map(t=>`<div class="trap-mini"><b>${t.title}</b></div>`).join("")}
+      <button class="btn small" style="margin-top:10px;" id="btnPieges">Voir tous les pièges →</button>
+    </div>
+  </div>
+  `;
+}
+
+function wireAccueil(){
+  document.getElementById("btnExpress").onclick = ()=>{ startQuiz("express"); goto("entrainement", {entSub:"quiz-live"}); };
+  document.getElementById("btnFiches").onclick = ()=> goto("entrainement", {entSub:"fiches"});
+  document.getElementById("btnExam").onclick = ()=> goto("examen");
+  document.getElementById("btnPieges").onclick = ()=> goto("entrainement", {entSub:"pieges"});
+}
+
+/* ============================= RENDER: COURS ============================= */
+
+function renderCours(){
+  const ch = CHAPTERS.find(c=>c.id===state.coursCh);
+  const part1 = CHAPTERS.filter(c=>c.part===1);
+  const part2 = CHAPTERS.filter(c=>c.part===2);
+  const navBtn = c => `<button data-ch="${c.id}" class="${c.id===state.coursCh?'active':''}">${c.id}. ${c.title}</button>`;
+
+  return `
+  <div class="cours-layout">
+    <div class="cours-nav">
+      <div class="part-label">PARTIE 1 — SYSTÈME POLITIQUE SUISSE</div>
+      ${part1.map(navBtn).join("")}
+      <div class="part-label">PARTIE 2 — CAUSES DE LA 1GM</div>
+      ${part2.map(navBtn).join("")}
+    </div>
+    <div class="cours-content">
+      <div class="kicker">PARTIE ${ch.part} · CHAPITRE ${ch.id}</div>
+      <h2>${ch.title}</h2>
+      <div class="subtitle">${ch.subtitle}</div>
+      <div class="idea-box"><div class="lab">L'IDÉE</div><p>${ch.idea}</p></div>
+      <div class="details"><ul>${ch.details.map(d=>`<li>${d}</li>`).join("")}</ul></div>
+      <table class="vocab-table">
+        <tr><th>ANGLAIS</th><th>FRANÇAIS</th></tr>
+        ${ch.vocab.map(v=>`<tr><td class="en">${v[0]}</td><td>${v[1]}</td></tr>`).join("")}
+      </table>
+    </div>
+  </div>
+  `;
+}
+
+function wireCours(){
+  document.querySelectorAll(".cours-nav button").forEach(b=>{
+    b.onclick = ()=>{ state.coursCh = parseInt(b.dataset.ch); render(); };
+  });
+}
+
+/* ============================= RENDER: ENTRAINEMENT ============================= */
+
+const ENT_SUBS = [
+  {id:"fiches", label:"Fiches (répétition espacée)"},
+  {id:"quiz-chapitre", label:"Quiz par chapitre"},
+  {id:"pieges", label:"Les pièges"},
+  {id:"lexique", label:"Lexique FR-EN"}
+];
+
+function renderEntrainement(){
+  let body = "";
+  if(state.entSub==="fiches") body = renderFiches();
+  else if(state.entSub==="quiz-chapitre") body = renderQuizChapitrePicker();
+  else if(state.entSub==="quiz-live") body = renderQuizLive();
+  else if(state.entSub==="pieges") body = renderPieges();
+  else if(state.entSub==="lexique") body = renderLexique();
+
+  const showSubs = state.entSub!=="quiz-live";
+  return `
+    ${showSubs?`<div class="subnav">${ENT_SUBS.map(s=>`<button data-sub="${s.id}" class="${state.entSub===s.id?'active':''}">${s.label}</button>`).join("")}</div>`:""}
+    ${body}
+  `;
+}
+
+function wireEntrainement(){
+  document.querySelectorAll(".subnav button[data-sub]").forEach(b=>{
+    b.onclick = ()=>{ state.entSub=b.dataset.sub; quizState=null; render(); };
+  });
+  if(state.entSub==="fiches") wireFiches();
+  if(state.entSub==="quiz-chapitre") wireQuizChapitrePicker();
+  if(state.entSub==="quiz-live") wireQuizLive();
+}
+
+/* ---- Fiches (flashcards, spaced repetition) ---- */
+
+function ensureFlashOrder(){
+  if(flashState.order.length===0){
+    flashState.order = CARDS.map(c=>c.id).sort((a,b)=>{
+      const la=(progress.cardBox[a]||1), lb=(progress.cardBox[b]||1);
+      if(la!==lb) return la-lb;
+      return Math.random()-0.5;
+    });
+    flashState.idx = 0;
+    flashState.flipped = false;
+  }
+}
+function renderFiches(){
+  ensureFlashOrder();
+  if(flashState.idx >= flashState.order.length){
+    return `<div class="flash-empty"><h3 style="font-family:var(--serif);">Série terminée !</h3><p>Toutes les fiches de cette session ont été vues.</p><button class="btn primary" id="btnRestartFlash">Recommencer une série</button></div>`;
+  }
+  const card = CARDS.find(c=>c.id===flashState.order[flashState.idx]);
+  const box = progress.cardBox[card.id]||1;
+  const ch = CHAPTERS.find(c=>c.id===card.chapterId);
+  return `
+  <div class="flash-wrap">
+    <div class="flash-meta"><span>VOCABULAIRE · ${ch.title.toUpperCase()}</span><span>Boîte ${box}/5 · ${flashState.idx+1}/${flashState.order.length}</span></div>
+    <div class="flashcard">
+      <div class="term">${card.en}</div>
+      ${flashState.flipped? `<div class="def">${card.fr}</div>` : `<button class="btn" id="btnFlip">Voir la réponse</button>`}
+    </div>
+    ${flashState.flipped? `
+    <div class="rate-row">
+      <button class="btn bad" id="btnBad">À revoir</button>
+      <button class="btn good" id="btnGood">Je savais</button>
+    </div>` : `<div style="text-align:center;color:var(--muted);font-size:12.5px;margin-top:14px;">Essaie de traduire avant de révéler la réponse.</div>`}
+  </div>`;
+}
+function wireFiches(){
+  const flip = document.getElementById("btnFlip");
+  if(flip) flip.onclick = ()=>{ flashState.flipped=true; renderInto(); };
+  const restart = document.getElementById("btnRestartFlash");
+  if(restart) restart.onclick = ()=>{ flashState.order=[]; render(); };
+  const good = document.getElementById("btnGood");
+  const bad = document.getElementById("btnBad");
+  function advance(delta){
+    const cardId = flashState.order[flashState.idx];
+    const cur = progress.cardBox[cardId]||1;
+    progress.cardBox[cardId] = delta>0? Math.min(5,cur+1) : 1;
+    saveProgress();
+    flashState.idx++; flashState.flipped=false;
+    render();
+  }
+  if(good) good.onclick = ()=>advance(1);
+  if(bad) bad.onclick = ()=>advance(-1);
+}
+function renderInto(){
+  // lightweight re-render of just entrainement body without losing subnav wiring issues
+  render();
+}
+
+/* ---- Quiz par chapitre ---- */
+
+function renderQuizChapitrePicker(){
+  return `<div class="card">
+    <h3>Choisis un chapitre</h3>
+    <div class="hint">2 questions par chapitre, correction immédiate.</div>
+    ${CHAPTERS.map(c=>{
+      const qCount = QUESTIONS.filter(q=>q.chapterId===c.id).length;
+      return `<div class="chapter-row"><span class="num">${c.id}</span><span class="name">${c.title}</span>
+        <button class="btn small" data-pick="${c.id}">Réviser (${qCount})</button></div>`;
+    }).join("")}
+  </div>`;
+}
+function wireQuizChapitrePicker(){
+  document.querySelectorAll("button[data-pick]").forEach(b=>{
+    b.onclick = ()=>{
+      const chId = parseInt(b.dataset.pick);
+      startQuiz("chapter", chId);
+      state.entSub="quiz-live";
+      render();
+    };
+  });
+}
+
+/* ---- Generic live quiz (used by chapter quiz & révision express) ---- */
+
+function startQuiz(mode, chapterId){
+  let list;
+  if(mode==="chapter"){
+    list = QUESTIONS.filter(q=>q.chapterId===chapterId);
+  } else { // express
+    list = [...QUESTIONS].sort(()=>Math.random()-0.5).slice(0,12);
+  }
+  quizState = {mode, list, idx:0, selected:null, submittedOne:false, score:0};
+}
+
+function renderQuizLive(){
+  if(!quizState) return `<div class="card">Choisis un mode de quiz.</div>`;
+  if(quizState.idx >= quizState.list.length){
+    return `<div class="quiz-wrap"><div class="exam-result">
+      <div class="score">${quizState.score}/${quizState.list.length}</div>
+      <div style="color:var(--muted);margin-top:8px;">Bien joué. Continue avec un autre chapitre ou la révision express.</div>
+      <button class="btn primary" style="margin-top:16px;" id="btnQuizDone">Retour</button>
+    </div></div>`;
+  }
+  const q = quizState.list[quizState.idx];
+  return `
+  <div class="quiz-wrap">
+    <div class="quiz-progress">Question ${quizState.idx+1} / ${quizState.list.length} ${quizState.mode==='express'?'· Révision express':''}</div>
+    <div class="quiz-card">
+      <div class="qtext">${q.prompt}</div>
+      ${q.options.map((opt,i)=>{
+        let cls="opt";
+        if(quizState.submittedOne){
+          if(i===q.correct) cls+=" correct";
+          else if(i===quizState.selected) cls+=" incorrect";
+        }
+        return `<button class="${cls}" data-opt="${i}" ${quizState.submittedOne?'disabled':''}>${opt}</button>`;
+      }).join("")}
+      ${quizState.submittedOne? `<div class="feedback ${quizState.selected===q.correct?'ok':'ko'}">${quizState.selected===q.correct?'Correct — ':'Pas tout à fait — '}${q.explain}</div>`:""}
+      ${quizState.submittedOne? `<div class="quiz-footer"><button class="btn primary" id="btnNextQ">${quizState.idx+1<quizState.list.length?'Question suivante':'Voir le score'}</button></div>`:""}
+    </div>
+  </div>`;
+}
+function wireQuizLive(){
+  document.querySelectorAll(".opt[data-opt]").forEach(b=>{
+    b.onclick = ()=>{
+      if(quizState.submittedOne) return;
+      const i = parseInt(b.dataset.opt);
+      quizState.selected = i;
+      quizState.submittedOne = true;
+      const q = quizState.list[quizState.idx];
+      const isCorrect = i===q.correct;
+      if(isCorrect) quizState.score++;
+      registerAnswer(q.chapterId, isCorrect);
+      render();
+    };
+  });
+  const next = document.getElementById("btnNextQ");
+  if(next) next.onclick = ()=>{
+    quizState.idx++; quizState.selected=null; quizState.submittedOne=false;
+    render();
+  };
+  const done = document.getElementById("btnQuizDone");
+  if(done) done.onclick = ()=>{ quizState=null; state.entSub="quiz-chapitre"; render(); };
+}
+
+/* ---- Pièges ---- */
+
+function renderPieges(){
+  return TRAPS.map(t=>`
+    <div class="trap-card">
+      <h4>${t.title}</h4>
+      <div class="trap-grid">
+        <div class="trap-side wrong"><span class="tag">CONFUSION FRÉQUENTE</span>${t.wrong}</div>
+        <div class="trap-side right"><span class="tag">CE QU'IL FAUT RETENIR</span>${t.right}</div>
+      </div>
+      <div class="explain">${t.explain}</div>
+    </div>
+  `).join("");
+}
+
+/* ---- Lexique FR-EN ---- */
+
+function renderLexique(){
+  return `
+    <input class="lex-search" id="lexSearch" placeholder="Chercher un terme (anglais ou français)...">
+    <table class="vocab-table" id="lexTable">
+      <tr><th>ANGLAIS</th><th>FRANÇAIS</th><th>CHAPITRE</th></tr>
+      ${lexRows(CARDS)}
+    </table>
+  `;
+}
+function lexRows(list){
+  return [...list].sort((a,b)=>a.en.localeCompare(b.en)).map(c=>{
+    const ch = CHAPTERS.find(x=>x.id===c.chapterId);
+    return `<tr><td class="en">${c.en}</td><td>${c.fr}</td><td style="color:var(--muted);">${ch.id}. ${ch.title}</td></tr>`;
+  }).join("");
+}
+function wireLexique(){
+  const input = document.getElementById("lexSearch");
+  if(!input) return;
+  input.oninput = ()=>{
+    const v = input.value.toLowerCase();
+    const filtered = CARDS.filter(c=> c.en.toLowerCase().includes(v) || c.fr.toLowerCase().includes(v));
+    document.getElementById("lexTable").innerHTML = `<tr><th>ANGLAIS</th><th>FRANÇAIS</th><th>CHAPITRE</th></tr>${lexRows(filtered)}`;
+  };
+}
+
+/* ============================= RENDER: FRISES ============================= */
+
+const FRISES_SUBS = [
+  {id:"chrono", label:"Frise chronologique suisse"},
+  {id:"alliances", label:"Les alliances de 1914"}
+];
+
+function renderFrises(){
+  let body = state.frisesSub==="chrono"? renderChrono() : renderAlliancesView();
+  return `<div class="subnav">${FRISES_SUBS.map(s=>`<button data-fsub="${s.id}" class="${state.frisesSub===s.id?'active':''}">${s.label}</button>`).join("")}</div>${body}`;
+}
+function wireFrises(){
+  document.querySelectorAll(".subnav button[data-fsub]").forEach(b=>{
+    b.onclick = ()=>{ state.frisesSub=b.dataset.fsub; render(); };
+  });
+  document.querySelectorAll(".t-item").forEach(el=>{
+    el.onclick = ()=>{ el.classList.toggle("open"); };
+  });
+}
+function renderChrono(){
+  return `<div class="card"><h3>1291 → 2000</h3><div class="hint">Clique sur une date pour déplier le résumé.</div>
+    <div class="timeline">
+      ${TIMELINE.map((t,i)=>`<div class="t-item" data-i="${i}">
+        <div class="yr">${t.yr}</div>
+        <div class="ttl">${t.ttl}</div>
+        <div class="body">${t.body}</div>
+      </div>`).join("")}
+    </div>
+  </div>`;
+}
+function renderAlliancesView(){
+  return `<div class="card">
+    <h3>Qui était allié à qui en 1914 ?</h3>
+    <div class="hint">Composition au moment du déclenchement de la guerre.</div>
+    <div class="alliance-grid">
+      <div class="alliance-col entente">
+        <h4>Triple Entente</h4>
+        <div class="sub">et ses alliés</div>
+        ${ALLIANCES.entente.map(c=>`<span class="chip">${c}</span>`).join("")}
+      </div>
+      <div class="alliance-col triplice">
+        <h4>Triple Alliance (Triplice)</h4>
+        <div class="sub">et ses alliés</div>
+        ${ALLIANCES.triplice.map(c=>`<span class="chip">${c}</span>`).join("")}
+        <div style="margin-top:10px;">${ALLIANCES.centrales_annexes.map(c=>`<span class="chip">${c}</span>`).join("")}</div>
+      </div>
+    </div>
+    <div class="callout">⚠️ Piège classique : l'Italie apparaît dans la Triplice sur le papier (1882), mais elle a rejoint l'Entente en 1915 — c'est le camp dans lequel elle a réellement combattu.</div>
+  </div>`;
+}
+
+/* ============================= RENDER: EXAMEN BLANC ============================= */
+
+let examState = null; // {answers:{}, submitted:false, secondsLeft, timerId, list}
+
+function renderExamen(){
+  if(!examState){
+    return `<div class="card" style="max-width:640px;">
+      <div class="kicker">CONDITIONS DU TEST</div>
+      <h3 style="font-size:24px;">Examen blanc — 20 questions, 30 minutes</h3>
+      <p style="color:var(--muted);">Aucun indice, aucune correction avant la fin. Le mélange couvre les deux parties : système politique suisse et causes de la 1GM. Prends une feuille si tu veux noter tes raisonnements.</p>
+      <div class="btnrow">
+        <button class="btn primary" id="btnStartTimed">Démarrer le chronomètre</button>
+        <button class="btn" id="btnStartUntimed">Sans chronomètre</button>
+      </div>
+    </div>`;
+  }
+  if(examState.submitted){
+    let score=0;
+    examState.list.forEach(q=>{ if(examState.answers[q.id]===q.correct) score++; });
+    return `<div class="quiz-wrap">
+      <div class="exam-result">
+        <div class="score">${score}/${examState.list.length}</div>
+        <div style="color:var(--muted);margin-top:8px;">${score>=examState.list.length*0.8?'Excellent niveau !':score>=examState.list.length*0.6?'Bonne base, revois les points faibles ci-dessous.':"Retourne réviser les chapitres où tu t'es trompé."}</div>
+        <button class="btn primary" style="margin-top:16px;" id="btnExamRestart">Refaire un examen blanc</button>
+      </div>
+      ${examState.list.map((q,i)=>{
+        const given = examState.answers[q.id];
+        const ok = given===q.correct;
+        return `<div class="exam-item">
+          <div class="qtext">${i+1}. ${q.prompt}</div>
+          ${q.options.map((opt,oi)=>{
+            let cls="opt";
+            if(oi===q.correct) cls+=" correct"; else if(oi===given) cls+=" incorrect";
+            return `<div class="${cls}">${opt}</div>`;
+          }).join("")}
+          <div class="feedback ${ok?'ok':'ko'}">${ok?'Correct — ':'Faux — '}${q.explain}</div>
+        </div>`;
+      }).join("")}
+    </div>`;
+  }
+  const mm = String(Math.floor(examState.secondsLeft/60)).padStart(2,"0");
+  const ss = String(examState.secondsLeft%60).padStart(2,"0");
+  return `<div class="quiz-wrap">
+    ${examState.timed? `<div class="exam-header"><div>Examen blanc — ${examState.list.length} questions</div><div class="timer ${examState.secondsLeft<180?'low':''}">${mm}:${ss}</div></div>`
+      : `<div class="exam-header"><div>Examen blanc — ${examState.list.length} questions</div><div style="color:var(--muted);font-size:13px;">Sans chronomètre</div></div>`}
+    ${examState.list.map((q,i)=>`
+      <div class="exam-item">
+        <div class="qtext">${i+1}. ${q.prompt}</div>
+        ${q.options.map((opt,oi)=>`
+          <label><input type="radio" name="exq-${q.id}" value="${oi}" ${examState.answers[q.id]===oi?'checked':''}> ${opt}</label>
+        `).join("")}
+      </div>
+    `).join("")}
+    <button class="btn primary" id="btnSubmitExam" style="width:100%;padding:16px;font-size:15px;">Soumettre l'examen</button>
+  </div>`;
+}
+
+function wireExamen(){
+  const startTimed = document.getElementById("btnStartTimed");
+  const startUntimed = document.getElementById("btnStartUntimed");
+  if(startTimed) startTimed.onclick = ()=> beginExam(true);
+  if(startUntimed) startUntimed.onclick = ()=> beginExam(false);
+
+  document.querySelectorAll('.exam-item input[type=radio]').forEach(r=>{
+    r.onchange = ()=>{
+      const qid = r.name.replace("exq-","");
+      examState.answers[qid] = parseInt(r.value);
+    };
+  });
+  const submit = document.getElementById("btnSubmitExam");
+  if(submit) submit.onclick = ()=> finishExam();
+  const restart = document.getElementById("btnExamRestart");
+  if(restart) restart.onclick = ()=>{ examState=null; render(); };
+}
+function beginExam(timed){
+  const list = EXAM_IDS.map(id=>QUESTIONS.find(q=>q.id===id));
+  examState = {answers:{}, submitted:false, secondsLeft:1800, timed, list, timerId:null};
+  if(timed){
+    examState.timerId = setInterval(()=>{
+      examState.secondsLeft--;
+      if(examState.secondsLeft<=0){ clearInterval(examState.timerId); finishExam(); }
+      else { const el=document.querySelector('.exam-header .timer'); if(el){ const mm=String(Math.floor(examState.secondsLeft/60)).padStart(2,"0"); const ss=String(examState.secondsLeft%60).padStart(2,"0"); el.textContent=mm+":"+ss; if(examState.secondsLeft<180) el.classList.add('low'); } }
+    },1000);
+  }
+  render();
+}
+function finishExam(){
+  if(examState.timerId) clearInterval(examState.timerId);
+  examState.submitted = true;
+  let score=0;
+  examState.list.forEach(q=>{
+    const given = examState.answers[q.id];
+    const ok = given===q.correct;
+    if(ok) score++;
+    registerAnswer(q.chapterId, ok);
+  });
+  progress.lastExam = {score, total:examState.list.length, date:new Date().toLocaleDateString('fr-CH')};
+  saveProgress();
+  render();
+}
+
+/* ============================= MAIN RENDER ============================= */
+
+function render(){
+  try{
+    renderNav();
+    const app = document.getElementById("app");
+    if(state.tab==="accueil"){ app.innerHTML = renderAccueil(); wireAccueil(); }
+    else if(state.tab==="cours"){ app.innerHTML = renderCours(); wireCours(); }
+    else if(state.tab==="entrainement"){ app.innerHTML = renderEntrainement(); wireEntrainement(); wireLexique(); }
+    else if(state.tab==="frises"){ app.innerHTML = renderFrises(); wireFrises(); }
+    else if(state.tab==="examen"){ app.innerHTML = renderExamen(); wireExamen(); }
+    const fab = document.getElementById("fabBtn");
+    if(fab) fab.style.display = (state.tab==="accueil")? "none":"block";
+  }catch(err){
+    console.error("Render error:", err);
+    const app = document.getElementById("app");
+    if(app){
+      app.innerHTML = `<div class="card"><h3>Un souci d'affichage est survenu</h3>
+        <p style="color:var(--muted);">Réessaie, ou reviens à l'accueil.</p>
+        <button class="btn primary" id="btnRecover">Retour à l'accueil</button></div>`;
+      const rec = document.getElementById("btnRecover");
+      if(rec) rec.onclick = ()=>{ state.tab="accueil"; quizState=null; examState=null; render(); };
+    }
+  }
+}
+
+/* ============================= INIT ============================= */
+
+(function init(){
+  loadProgress();
+  render();
+})();
+
+</script>
+</body>
+</html>
